@@ -1,0 +1,19 @@
+{
+  "name": "cypress_1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:laptop:headed": "cypress open --config-file cypress.laptop.config.js",
+    "test:laptop:headless": "cypress run --config-file cypress.laptop.config.js --browser chrome",
+    "test:mobile:headed": "cypress open --config-file cypress.mobile.config.js",
+    "test:mobile:headless": "cypress run --config-file cypress.mobile.config.js --browser electron"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "cypress": "^15.21.0"
+  }
+}

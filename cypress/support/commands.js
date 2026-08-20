@@ -1,32 +1,32 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+// Авторизация
+Cypress.Commands.add(
+  "login",
+  (email = "user@example.com", password = "password") => {
+    cy.request({
+      method: "POST",
+      url: "/api/auth/login",
+      body: { email, password },
+    }).then((resp) => {
+      window.localStorage.setItem("token", resp.body.token);
+    });
+    cy.visit("/");
+  },
+);
 
-Cypress.Commands.add("login", (login, password) => {
-  cy.contains("Log in").click();
-  cy.get("#mail").type(login);
-  cy.get("#pass").type(password);
-  cy.contains("Submit").click();
+// Добавление книги в избранное
+Cypress.Commands.add("addBookToFavorites", (bookTitle) => {
+  cy.contains(bookTitle)
+    .parent()
+    .within(() => {
+      cy.get("[data-cy=add-to-favorites]").click();
+    });
+});
+
+// Удаление из избранного
+Cypress.Commands.add("removeBookFromFavorites", (bookTitle) => {
+  cy.contains(bookTitle)
+    .parent()
+    .within(() => {
+      cy.get("[data-cy=remove-from-favorites]").click();
+    });
 });
