@@ -1,15 +1,20 @@
 {
-  "name": "cypress-test",
+  "name": "cypress_1",
   "version": "1.0.0",
-  "description": "first tests with Cypress",
-  "license": "ISC",
-  "author": "OM",
-  "type": "commonjs",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "http://localhost:3000",
+    "test:laptop:headed": "cypress open --config-file cypress.laptop.config.js",
+    "test:laptop:headless": "cypress run --config-file cypress.laptop.config.js --browser chrome",
+    "test:mobile:headed": "cypress open --config-file cypress.mobile.config.js",
+    "test:mobile:headless": "cypress run --config-file cypress.mobile.config.js --browser electron"
   },
-  "dependencies": {
-    "cypress": "^8.3.0"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "cypress": "^15.21.0"
   }
 }

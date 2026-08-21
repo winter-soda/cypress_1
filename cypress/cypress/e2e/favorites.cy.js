@@ -1,3 +1,15 @@
+describe('template spec', () => {
+  it('Should successfully login', {} => {
+    cy.visit('http://localhost:3000');
+    cy.get('#responsive-navbar-nav button.btn').click();
+    cy.get('#mail').click();
+    cy.get('#mail').type('test@test.com');
+    cy.get('#pass').click();
+    cy.get('#pass').type('test');
+    cy.get('button.btn-success').click();
+    cy.get('#responsive-navbar-nav span.pt-2').should('have.text', 'Добро пожаловать test@test.com');
+  })
+}) 
 describe('Функциональность "Избранное"', () => {
   beforeEach(() => {
     cy.login();
